@@ -111,17 +111,6 @@ public class CommandViewTest {
         assertEquals(Error.NOT_ADVANCED, new PlayController(new Game()).move(origin, target));
     }
     
-    @Ignore
-    public void testGivenPlayControllerWhenNotEmptyTargeThenError() {
-        when(playController.getColor()).thenReturn(Color.WHITE);
-        when(console.readString("Mueven las blancas: ")).thenReturn("51.42\n");
-        Coordinate origin = new Coordinate(5, 1);
-        Coordinate target = new Coordinate(4, 2);
-        when(playController.move(origin, target)).thenReturn(Error.NOT_EMPTY_TARGET);
-        commandView.interact();
-        verify(playController).move(origin, target);
-    }
-    
     @Test
     public void testGivenPlayControllerWhenEatEmptyPieceThenError() {
         when(playController.getColor()).thenReturn(Color.WHITE);
