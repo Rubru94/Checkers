@@ -4,6 +4,7 @@ import checkerstest.controllers.PlayController;
 import checkerstest.models.Game;
 import checkerstest.views.CommandView;
 import java.util.Scanner;
+/*Pueba commit*/
 
 public class ConsoleCheckers {
 
