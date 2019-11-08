@@ -8,8 +8,6 @@ public class PlayView extends SubView {
 
     private static final String[] COLORS = {"blancas", "negras"};
 
-    private static final String MESSAGE = "Derrota!!! No puedes mover tus fichas!!!";
-
     public PlayView() {
         super();
     }
@@ -29,7 +27,7 @@ public class PlayView extends SubView {
             }
         } while (error != null);
         if (playController.isBlocked()) {
-            this.console.write(PlayView.MESSAGE);
+            this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());
         }
     }
 
