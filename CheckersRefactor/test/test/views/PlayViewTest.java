@@ -3,7 +3,7 @@ package test.views;
 import checkersrefactor.controllers.PlayController;
 import checkersrefactor.models.Color;
 import checkersrefactor.models.Coordinate;
-import checkersrefactor.views.CommandView;
+import checkersrefactor.views.PlayView;
 import checkersrefactor.utils.Console;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommandViewTest {
+public class PlayViewTest {
 
     @Mock
     PlayController playController;
@@ -25,7 +25,7 @@ public class CommandViewTest {
     Console console;
 
     @InjectMocks
-    CommandView commandView;
+    PlayView playView;
 
     @Before
     public void initMocks() {
@@ -36,7 +36,7 @@ public class CommandViewTest {
     public void testInteract() {
         when(playController.getColor()).thenReturn(Color.BLACK);
         when(console.readString("Mueven las negras: ")).thenReturn("32.41\n");
-        commandView.interact(playController);
+        playView.interact(playController);
         verify(playController).move(new Coordinate(2, 1), new Coordinate(3, 0));
     }
 
