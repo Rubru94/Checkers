@@ -37,6 +37,7 @@ public class Game {
     }
 
     public Error move(Coordinate origin, Coordinate target) {
+        Error error = null;
         assert origin != null && target != null;
         if (!origin.isValid() || !target.isValid()) {
             return Error.OUT_COORDINATE;
@@ -44,20 +45,12 @@ public class Game {
         if (board.isEmpty(origin)) {
             return Error.EMPTY_ORIGIN;
         }
-        Color color = this.board.getColor(origin);
-        if (this.turn.getColor() != color) {
-            return Error.OPPOSITE_PIECE;
+
+        error = this.board.getPiece(origin).getError(origin, target, this.turn);
+        if (error != null) {
+            return error;
         }
-        if (!origin.isDiagonal(target)) {
-            return Error.NOT_DIAGONAL;
-        }
-        Piece piece = this.board.getPiece(origin);
-        if (!piece.isAdvanced(origin, target)) {
-            return Error.NOT_ADVANCED;
-        }
-        if (origin.diagonalDistance(target) >= 3) {
-            return Error.BAD_DISTANCE;
-        }
+
         if (!this.board.isEmpty(target)) {
             return Error.NOT_EMPTY_TARGET;
         }

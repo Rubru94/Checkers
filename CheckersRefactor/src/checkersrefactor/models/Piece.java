@@ -20,4 +20,19 @@ public class Piece {
         return difference < 0;
     }
 
+    public Error getError(Coordinate origin, Coordinate target, Turn turn) {
+        if (turn.getColor() != this.color) {
+            return Error.OPPOSITE_PIECE;
+        }
+        if (!origin.isDiagonal(target)) {
+            return Error.NOT_DIAGONAL;
+        }
+        if (!this.isAdvanced(origin, target)) {
+            return Error.NOT_ADVANCED;
+        }
+        if (origin.diagonalDistance(target) >= 3) {
+            return Error.BAD_DISTANCE;
+        }
+        return null;
+    }
 }
