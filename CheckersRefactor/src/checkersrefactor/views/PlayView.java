@@ -17,15 +17,20 @@ public class PlayView extends SubView {
         Error error = null;
         GameView gameView = new GameView();
         do {
-            String command = this.console.readString("Mueven las " + color + ": ");
-            String[] input = command.split("\\.|\\n");
-            error = playController.move(
-                    new Coordinate(input[0]),
-                    new Coordinate(input[1]));
-            if (error != null) {
-                console.writeln("Error!!!" + error.name());
+            try {
+                String command = this.console.readString("Mueven las " + color + ": ");
+                String[] input = command.split("\\.|\\n");
+                error = playController.move(
+                        new Coordinate(input[0]),
+                        new Coordinate(input[1]));
+                if (error != null) {
+                    console.writeln("Error!!!" + error.name());
+                }
                 gameView.write(playController);
+            } catch (NumberFormatException e) {
+                this.console.writeln(MessageView.INVALID_FORMAT.getMessage());
             }
+
         } while (error != null);
         if (playController.isBlocked()) {
             this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());

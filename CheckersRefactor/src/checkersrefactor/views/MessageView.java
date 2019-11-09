@@ -4,9 +4,10 @@ import checkersrefactor.utils.Console;
 
 public enum MessageView {
 
-    TITLE("Draughts"),
+    TITLE("DAMAS"),
     PLAY_AGAIN("¿Queréis jugar otra"),
-    NOT_MOVE_DEFEAT("Derrota!!! No puedes mover tus fichas!!!");
+    NOT_MOVE_DEFEAT("Derrota!!! No puedes mover tus fichas!!!"),
+    INVALID_FORMAT("Entrada no valida, prueba de nuevo");
 
     private String message;
     private static Console console = new Console();
@@ -20,7 +21,7 @@ public enum MessageView {
     }
 
     public void writeln() {
-        MessageView.console.write(this.message);
+        MessageView.console.writeln(this.message);
     }
     
     public String getMessage() {

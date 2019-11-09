@@ -10,6 +10,7 @@ public class GameView extends SubView {
     private static final String[] COLORS = new String[]{"b", "n", " "};
 
     public void write(Controller controller) {
+        this.console.writeln();
         this.writeNumbersLine(Board.DIMENSION);
         for (int i = 0; i < Board.DIMENSION; i++) {
             this.console.write((i + 1) + "");
@@ -24,6 +25,7 @@ public class GameView extends SubView {
             this.console.writeln((i + 1) + "");
         }
         this.writeNumbersLine(Board.DIMENSION);
+        this.console.writeln();
     }
 
     private void writeNumbersLine(final int DIMENSION) {
