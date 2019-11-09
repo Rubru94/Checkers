@@ -81,5 +81,5 @@ public class Game {
     public boolean hasNoPieces() {
         return this.board.getPieces(this.turn.getColor()).isEmpty();
     }
-
+    
 }

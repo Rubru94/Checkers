@@ -7,8 +7,7 @@ public class Session {
     private Game game;
 
     public Session() {
-        this.state = new State();
-        this.game = new Game();
+        this.reset();
     }
 
     public StateValue getValueState() {
@@ -20,6 +19,8 @@ public class Session {
     }
 
     public void reset() {
+        this.state = new State();
+        this.game = new Game();
         this.state.reset();
     }
 

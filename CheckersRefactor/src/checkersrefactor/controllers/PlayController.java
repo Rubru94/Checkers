@@ -31,6 +31,10 @@ public class PlayController extends Controller {
     public boolean hasNoPieces() {
         return session.hasNoPieces();
     }
+    
+    public void endGame() {
+        this.session.next();
+    }
 
     @Override
     public void accept(ControllersVisitor controllersVisitor) {
