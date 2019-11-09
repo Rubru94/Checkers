@@ -78,7 +78,7 @@ public class Game {
         return this.board.getPiece(coordinate);
     }
 
-    public boolean isBlocked() {
+    public boolean hasNoPieces() {
         return this.board.getPieces(this.turn.getColor()).isEmpty();
     }
 

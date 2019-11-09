@@ -3,7 +3,6 @@ package checkersrefactor.controllers;
 import checkersrefactor.models.Color;
 import checkersrefactor.models.Coordinate;
 import checkersrefactor.models.Session;
-import checkersrefactor.models.Board;
 
 public abstract class Controller {
 

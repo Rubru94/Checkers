@@ -39,8 +39,8 @@ public class Session {
         return this.game.getColor(coordinate);
     }
 
-    public boolean isBlocked() {
-        return this.game.isBlocked();
+    public boolean hasNoPieces() {
+        return this.game.hasNoPieces();
     }
 
 }

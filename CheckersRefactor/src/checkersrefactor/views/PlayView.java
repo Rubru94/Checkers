@@ -27,12 +27,12 @@ public class PlayView extends SubView {
                     console.writeln("Error!!!" + error.name());
                 }
                 gameView.write(playController);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 this.console.writeln(MessageView.INVALID_FORMAT.getMessage());
             }
 
         } while (error != null);
-        if (playController.isBlocked()) {
+        if (playController.hasNoPieces()) {
             this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());
         }
     }
