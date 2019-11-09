@@ -1,5 +1,6 @@
 package test.models;
 
+import checkersrefactor.models.Board;
 import checkersrefactor.models.Color;
 import checkersrefactor.models.Coordinate;
 import checkersrefactor.models.Game;
@@ -19,7 +20,7 @@ public class GameTest {
     @Test
     public void testGivenNewBoardThenGoodLocations() {
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < game.getDimension(); j++) {
+            for (int j = 0; j < Board.DIMENSION; j++) {
                 Coordinate coordinate = new Coordinate(i, j);
                 Color color = game.getColor(coordinate);
                 if (coordinate.isBlack()) {
@@ -29,8 +30,8 @@ public class GameTest {
                 }
             }
         }
-        for (int i = 5; i < game.getDimension(); i++) {
-            for (int j = 0; j < game.getDimension(); j++) {
+        for (int i = 5; i < Board.DIMENSION; i++) {
+            for (int j = 0; j < Board.DIMENSION; j++) {
                 Coordinate coordinate = new Coordinate(i, j);
                 Color color = game.getColor(coordinate);
                 if (coordinate.isBlack()) {

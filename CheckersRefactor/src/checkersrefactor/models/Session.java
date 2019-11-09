@@ -43,8 +43,4 @@ public class Session {
         return this.game.isBlocked();
     }
 
-    public int getDimension() {
-        return this.game.getDimension();
-    }
-
 }

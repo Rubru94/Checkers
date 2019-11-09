@@ -1,6 +1,7 @@
 package checkersrefactor.views;
 
 import checkersrefactor.controllers.Controller;
+import checkersrefactor.models.Board;
 import checkersrefactor.models.Color;
 import checkersrefactor.models.Coordinate;
 
@@ -9,11 +10,10 @@ public class GameView extends SubView {
     private static final String[] COLORS = new String[]{"b", "n", " "};
 
     public void write(Controller controller) {
-        final int DIMENSION = controller.getDimension();
-        this.writeNumbersLine(DIMENSION);
-        for (int i = 0; i < DIMENSION; i++) {
+        this.writeNumbersLine(Board.DIMENSION);
+        for (int i = 0; i < Board.DIMENSION; i++) {
             this.console.write((i + 1) + "");
-            for (int j = 0; j < DIMENSION; j++) {
+            for (int j = 0; j < Board.DIMENSION; j++) {
                 Color color = controller.getColor(new Coordinate(i, j));
                 if (color == null) {
                     this.console.write(GameView.COLORS[2]);
@@ -23,7 +23,7 @@ public class GameView extends SubView {
             }
             this.console.writeln((i + 1) + "");
         }
-        this.writeNumbersLine(DIMENSION);
+        this.writeNumbersLine(Board.DIMENSION);
     }
 
     private void writeNumbersLine(final int DIMENSION) {

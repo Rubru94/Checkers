@@ -9,8 +9,8 @@ public class Game {
     public Game() {
         this.turn = new Turn();
         this.board = new Board();
-        for (int i = 0; i < this.board.getDimension(); i++) {
-            for (int j = 0; j < this.board.getDimension(); j++) {
+        for (int i = 0; i < Board.DIMENSION; i++) {
+            for (int j = 0; j < Board.DIMENSION; j++) {
                 Coordinate coordinate = new Coordinate(i, j);
                 Piece piece = this.getInitialPiece(coordinate);
                 if (piece != null) {
@@ -92,10 +92,6 @@ public class Game {
 
     public boolean isBlocked() {
         return this.board.getPieces(this.turn.getColor()).isEmpty();
-    }
-
-    public int getDimension() {
-        return this.board.getDimension();
     }
 
 }

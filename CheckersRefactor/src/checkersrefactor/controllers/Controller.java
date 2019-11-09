@@ -3,6 +3,7 @@ package checkersrefactor.controllers;
 import checkersrefactor.models.Color;
 import checkersrefactor.models.Coordinate;
 import checkersrefactor.models.Session;
+import checkersrefactor.models.Board;
 
 public abstract class Controller {
 
@@ -14,10 +15,6 @@ public abstract class Controller {
 
     public Color getColor(Coordinate coordinate) {
         return this.session.getColor(coordinate);
-    }
-
-    public int getDimension() {
-        return this.session.getDimension();
     }
 
     abstract public void accept(ControllersVisitor controllersVisitor);
