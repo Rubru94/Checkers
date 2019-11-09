@@ -20,7 +20,7 @@ public class Game {
         }
     }
 
-    private Piece getInitialPiece(Coordinate coordinate) {
+    public Piece getInitialPiece(Coordinate coordinate) {
         if (coordinate.isBlack()) {
             if (coordinate.getRow() <= 2) {
                 return new Piece(Color.BLACK);
@@ -72,6 +72,10 @@ public class Game {
 
     public Color getColor() {
         return this.turn.getColor();
+    }
+    
+    public Board getBoard() {
+        return this.board;
     }
 
     public Piece getPiece(Coordinate coordinate) {

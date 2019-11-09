@@ -5,6 +5,7 @@ import checkersrefactor.models.Color;
 import checkersrefactor.models.Coordinate;
 import checkersrefactor.models.Game;
 import checkersrefactor.models.Error;
+import checkersrefactor.models.Piece;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Test;
@@ -19,25 +20,17 @@ public class GameTest {
 
     @Test
     public void testGivenNewBoardThenGoodLocations() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Board.DIMENSION; i++) {
             for (int j = 0; j < Board.DIMENSION; j++) {
                 Coordinate coordinate = new Coordinate(i, j);
-                Color color = game.getColor(coordinate);
-                if (coordinate.isBlack()) {
-                    assertEquals(Color.BLACK, color);
-                } else {
-                    assertNull(color);
-                }
-            }
-        }
-        for (int i = 5; i < Board.DIMENSION; i++) {
-            for (int j = 0; j < Board.DIMENSION; j++) {
-                Coordinate coordinate = new Coordinate(i, j);
-                Color color = game.getColor(coordinate);
-                if (coordinate.isBlack()) {
-                    assertEquals(Color.WHITE, color);
-                } else {
-                    assertNull(color);
+                Piece piece = game.getInitialPiece(coordinate);
+                if (piece != null) {
+                    Color color = game.getColor(coordinate);
+                    if (coordinate.getRow() <= 2) {
+                        assertEquals(Color.BLACK, color);
+                    } else if (coordinate.getRow() >= 5) {
+                        assertEquals(Color.WHITE, color);
+                    }
                 }
             }
         }

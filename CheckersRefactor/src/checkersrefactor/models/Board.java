@@ -23,7 +23,7 @@ public class Board {
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }
 
-    void put(Coordinate coordinate, Piece piece) {
+    public void put(Coordinate coordinate, Piece piece) {
         assert piece != null;
         this.getSquare(coordinate).put(piece);
     }

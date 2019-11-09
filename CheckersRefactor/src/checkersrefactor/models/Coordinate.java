@@ -52,11 +52,11 @@ public class Coordinate {
         return (this.row + this.column) % 2 != 0;
     }
 
-    int getRow() {
+    public int getRow() {
         return this.row;
     }
 
-    int getColumn() {
+    public int getColumn() {
         return this.column;
     }
 
