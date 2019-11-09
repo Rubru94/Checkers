@@ -17,8 +17,10 @@ public class PlayView extends SubView {
         Error error = null;
         String[] input = null;
         GameView gameView = new GameView();
+
         do {
             try {
+
                 color = PlayView.COLORS[playController.getColor().ordinal()];
                 String command = this.console.readString("Mueven las " + color + ": ");
                 input = command.split("\\.|\\n");
@@ -29,15 +31,18 @@ public class PlayView extends SubView {
                     console.writeln("Error!!!" + error.name());
                 }
                 gameView.write(playController);
+
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+
                 if (input[0].equals("-1")) {
-                    this.console.writeln(MessageView.GIVE_UP_DEFEAT.getMessage());   
+                    this.console.writeln(MessageView.GIVE_UP_DEFEAT.getMessage());
                     playController.endGame();
                 } else {
                     this.console.writeln(MessageView.INVALID_FORMAT.getMessage());
                 }
             }
-        } while (error != null || !input[0].equals("-1"));
+        } while (error != null);
+        
         if (playController.hasNoPieces()) {
             this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());
         }
