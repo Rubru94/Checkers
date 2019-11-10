@@ -26,9 +26,9 @@ public class GameTest {
                 Piece piece = game.getInitialPiece(coordinate);
                 if (piece != null) {
                     Color color = game.getColor(coordinate);
-                    if (coordinate.getRow() <= 2) {
+                    if (coordinate.getRow() < Game.EMPTY_SQUARES_START_ROW) {
                         assertEquals(Color.BLACK, color);
-                    } else if (coordinate.getRow() >= 5) {
+                    } else if (coordinate.getRow() > Game.EMPTY_SQUARES_FINISH_ROW) {
                         assertEquals(Color.WHITE, color);
                     }
                 }

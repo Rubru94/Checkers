@@ -5,6 +5,10 @@ public class Game {
     private Board board;
 
     private Turn turn;
+    
+    public static final int EMPTY_SQUARES_START_ROW = 3;
+    public static final int EMPTY_SQUARES_FINISH_ROW = 4;
+    public static final int VALID_EATING_DISTANCE = 2;
 
     public Game() {
         this.turn = new Turn();
@@ -22,9 +26,9 @@ public class Game {
 
     public Piece getInitialPiece(Coordinate coordinate) {
         if (coordinate.isBlack()) {
-            if (coordinate.getRow() <= 2) {
+            if (coordinate.getRow() < EMPTY_SQUARES_START_ROW) {
                 return new Piece(Color.BLACK);
-            } else if (coordinate.getRow() >= 5) {
+            } else if (coordinate.getRow() > EMPTY_SQUARES_FINISH_ROW) {
                 return new Piece(Color.WHITE);
             }
         }
@@ -49,7 +53,7 @@ public class Game {
         if (!this.board.isEmpty(target)) {
             return Error.NOT_EMPTY_TARGET;
         }
-        if (origin.diagonalDistance(target) == 2) {
+        if (origin.diagonalDistance(target) == VALID_EATING_DISTANCE) {
             Coordinate between = origin.betweenDiagonal(target);
             if (this.board.getPiece(between) == null) {
                 return Error.EATING_EMPTY;
