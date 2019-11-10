@@ -19,7 +19,7 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenNewBoardThenGoodLocations() {
+    public void testGivenNewGameThenBoardHasGoodLocations() {
         for (int i = 0; i < Board.DIMENSION; i++) {
             for (int j = 0; j < Board.DIMENSION; j++) {
                 Coordinate coordinate = new Coordinate(i, j);

@@ -58,4 +58,37 @@ public class Board {
         }
         return pieces;
     }
+
+    @Override
+    public String toString() {
+        String string = "";
+        string += this.toStringHorizontalNumbers();
+        for (int i = 0; i < Board.DIMENSION; i++) {
+            string += this.toStringHorizontalPiecesWithNumbers(i);
+        }
+        string += this.toStringHorizontalNumbers();
+        return string;
+    }
+
+    private String toStringHorizontalNumbers() {
+        String string = " ";
+        for (int j = 0; j < Board.DIMENSION; j++) {
+            string += j;
+        }
+        return string + "\n";
+    }
+
+    private String toStringHorizontalPiecesWithNumbers(int row) {
+        String string = "" + row;
+        for (int j = 0; j < Board.DIMENSION; j++) {
+            Piece piece = this.getPiece(new Coordinate(row, j));
+            if (piece == null) {
+                string += " ";
+            } else {
+                final String[] letters = {"b", "n"};
+                string += letters[piece.getColor().ordinal()];
+            }
+        }
+        return string + row + "\n";
+    }
 }

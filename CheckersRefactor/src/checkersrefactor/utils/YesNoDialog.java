@@ -5,7 +5,7 @@ public class YesNoDialog {
     private static final char AFIRMATIVE = 'y';
     private static final char NEGATIVE = 'n';
     private static final String QUESTION = "? (" + YesNoDialog.AFIRMATIVE + "/" + YesNoDialog.NEGATIVE + "): ";
-    private static final String ERROR = "The value must be '" + YesNoDialog.AFIRMATIVE + "' or '"
+    private static final String ERROR = "El valor debe ser '" + YesNoDialog.AFIRMATIVE + "' o '"
             + YesNoDialog.NEGATIVE + "'";
     private Console console;
 
