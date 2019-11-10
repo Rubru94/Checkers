@@ -3,6 +3,8 @@ package checkersrefactor.models;
 public class Piece {
 
     private Color color;
+    
+    public static final int VALID_PAWN_MOVE_DISTANCE = 2;
 
     public Piece(Color color) {
         this.color = color;
@@ -30,7 +32,7 @@ public class Piece {
         if (!this.isAdvanced(origin, target)) {
             return Error.NOT_ADVANCED;
         }
-        if (origin.diagonalDistance(target) >= 3) {
+        if (origin.diagonalDistance(target) > VALID_PAWN_MOVE_DISTANCE) {
             return Error.BAD_DISTANCE;
         }
         return null;
