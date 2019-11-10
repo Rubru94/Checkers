@@ -36,6 +36,7 @@ public class PlayView extends SubView {
 
                 if (input[0].equals("-1")) {
                     this.console.writeln(MessageView.GIVE_UP_DEFEAT.getMessage());
+                    error = null;
                     playController.endGame();
                 } else {
                     this.console.writeln(MessageView.INVALID_FORMAT.getMessage());

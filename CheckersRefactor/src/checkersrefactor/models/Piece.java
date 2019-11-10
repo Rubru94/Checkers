@@ -3,8 +3,6 @@ package checkersrefactor.models;
 public class Piece {
 
     private Color color;
-    
-    public static final int VALID_PAWN_MOVE_DISTANCE = 2;
 
     public Piece(Color color) {
         this.color = color;
@@ -22,19 +20,4 @@ public class Piece {
         return difference < 0;
     }
 
-    Error getError(Coordinate origin, Coordinate target, Turn turn) {
-        if (turn.getColor() != this.color) {
-            return Error.OPPOSITE_PIECE;
-        }
-        if (!origin.isDiagonal(target)) {
-            return Error.NOT_DIAGONAL;
-        }
-        if (!this.isAdvanced(origin, target)) {
-            return Error.NOT_ADVANCED;
-        }
-        if (origin.diagonalDistance(target) > VALID_PAWN_MOVE_DISTANCE) {
-            return Error.BAD_DISTANCE;
-        }
-        return null;
-    }
 }

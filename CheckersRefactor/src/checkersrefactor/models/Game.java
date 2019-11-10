@@ -5,10 +5,9 @@ public class Game {
     private Board board;
 
     private Turn turn;
-    
+
     public static final int EMPTY_SQUARES_START_ROW = 3;
     public static final int EMPTY_SQUARES_FINISH_ROW = 4;
-    public static final int VALID_EATING_DISTANCE = 2;
 
     public Game() {
         this.turn = new Turn();
@@ -36,30 +35,13 @@ public class Game {
     }
 
     public Error move(Coordinate origin, Coordinate target) {
-        Error error = null;
-        assert origin != null && target != null;
-        if (!origin.isValid() || !target.isValid()) {
-            return Error.OUT_COORDINATE;
-        }
-        if (board.isEmpty(origin)) {
-            return Error.EMPTY_ORIGIN;
-        }
 
-        error = this.board.getPiece(origin).getError(origin, target, this.turn);
+        PawnMoveValidator pawnMoveValidator = new PawnMoveValidator(origin, target, this.board, this.turn);
+        Error error = pawnMoveValidator.validateErrors();
         if (error != null) {
             return error;
         }
 
-        if (!this.board.isEmpty(target)) {
-            return Error.NOT_EMPTY_TARGET;
-        }
-        if (origin.diagonalDistance(target) == VALID_EATING_DISTANCE) {
-            Coordinate between = origin.betweenDiagonal(target);
-            if (this.board.getPiece(between) == null) {
-                return Error.EATING_EMPTY;
-            }
-            this.board.remove(between);
-        }
         this.board.move(origin, target);
         this.turn.change();
         return null;
@@ -77,9 +59,13 @@ public class Game {
     public Color getColor() {
         return this.turn.getColor();
     }
-    
+
     Board getBoard() {
         return this.board;
+    }
+
+    Turn getTurn() {
+        return this.turn;
     }
 
     public Piece getPiece(Coordinate coordinate) {
@@ -89,5 +75,5 @@ public class Game {
     public boolean hasNoPieces() {
         return this.board.getPieces(this.turn.getColor()).isEmpty();
     }
-    
+
 }
