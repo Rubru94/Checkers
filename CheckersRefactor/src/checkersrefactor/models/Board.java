@@ -53,7 +53,9 @@ public class Board {
         List<Piece> pieces = new ArrayList<>();
         for (int i = 0; i < Board.DIMENSION; i++) {
             for (int j = 0; j < Board.DIMENSION; j++) {
-                pieces.add(this.squares[i][j].getPiece());
+                if (this.squares[i][j].getColor() == color) {
+                    pieces.add(this.squares[i][j].getPiece());
+                }
             }
         }
         return pieces;
