@@ -2,9 +2,9 @@ package checkersrefactor.controllers;
 
 public interface ControllersVisitor {
 
-    void visit(StartController startController);
+    public void visit(StartController startController);
 
-    void visit(PlayController playController);
+    public void visit(PlayController playController);
 
-    void visit(ResumeController resumeController);
+    public void visit(ResumeController resumeController);
 }

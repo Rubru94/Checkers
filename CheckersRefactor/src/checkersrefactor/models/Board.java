@@ -28,28 +28,28 @@ public class Board {
         this.getSquare(coordinate).put(piece);
     }
 
-    Piece remove(Coordinate coordinate) {
+    public Piece remove(Coordinate coordinate) {
         assert this.getPiece(coordinate) != null;
         return this.getSquare(coordinate).remove();
     }
 
-    void move(Coordinate origin, Coordinate target) {
+    public void move(Coordinate origin, Coordinate target) {
         this.put(target, this.remove(origin));
     }
 
-    Piece getPiece(Coordinate coordinate) {
+    public Piece getPiece(Coordinate coordinate) {
         return this.getSquare(coordinate).getPiece();
     }
 
-    boolean isEmpty(Coordinate coordinate) {
+    public boolean isEmpty(Coordinate coordinate) {
         return this.getSquare(coordinate).isEmpty();
     }
 
-    Color getColor(Coordinate coordinate) {
+    public Color getColor(Coordinate coordinate) {
         return this.getSquare(coordinate).getColor();
     }
 
-    List<Piece> getPieces(Color color) {
+    public List<Piece> getPieces(Color color) {
         List<Piece> pieces = new ArrayList<>();
         for (int i = 0; i < Board.DIMENSION; i++) {
             for (int j = 0; j < Board.DIMENSION; j++) {
