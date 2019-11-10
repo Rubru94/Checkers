@@ -20,7 +20,7 @@ public class Piece {
         return difference < 0;
     }
 
-    public Error getError(Coordinate origin, Coordinate target, Turn turn) {
+    Error getError(Coordinate origin, Coordinate target, Turn turn) {
         if (turn.getColor() != this.color) {
             return Error.OPPOSITE_PIECE;
         }

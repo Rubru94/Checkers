@@ -23,25 +23,25 @@ public class Board {
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }
 
-    public void put(Coordinate coordinate, Piece piece) {
+    void put(Coordinate coordinate, Piece piece) {
         assert piece != null;
         this.getSquare(coordinate).put(piece);
     }
 
-    public Piece remove(Coordinate coordinate) {
+    Piece remove(Coordinate coordinate) {
         assert this.getPiece(coordinate) != null;
         return this.getSquare(coordinate).remove();
     }
 
-    public void move(Coordinate origin, Coordinate target) {
+    void move(Coordinate origin, Coordinate target) {
         this.put(target, this.remove(origin));
     }
 
-    public Piece getPiece(Coordinate coordinate) {
+    Piece getPiece(Coordinate coordinate) {
         return this.getSquare(coordinate).getPiece();
     }
 
-    public boolean isEmpty(Coordinate coordinate) {
+    boolean isEmpty(Coordinate coordinate) {
         return this.getSquare(coordinate).isEmpty();
     }
 
@@ -49,7 +49,7 @@ public class Board {
         return this.getSquare(coordinate).getColor();
     }
 
-    public List<Piece> getPieces(Color color) {
+    List<Piece> getPieces(Color color) {
         List<Piece> pieces = new ArrayList<>();
         for (int i = 0; i < Board.DIMENSION; i++) {
             for (int j = 0; j < Board.DIMENSION; j++) {

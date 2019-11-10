@@ -17,15 +17,15 @@ public enum MessageView {
         this.message = message;
     }
 
-    public void write() {
+    void write() {
         MessageView.console.write(this.message);
     }
 
-    public void writeln() {
+    void writeln() {
         MessageView.console.writeln(this.message);
     }
     
-    public String getMessage() {
+    String getMessage() {
         return this.message;
     }
 }

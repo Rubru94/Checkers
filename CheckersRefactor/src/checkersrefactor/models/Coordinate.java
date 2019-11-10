@@ -18,7 +18,7 @@ public class Coordinate {
         this.column = column;
     }
 
-    public boolean isValid() {
+    boolean isValid() {
         return Coordinate.LOWER_LIMIT <= row && row <= Coordinate.UPPER_LIMIT && Coordinate.LOWER_LIMIT <= column
                 && column <= Coordinate.UPPER_LIMIT;
     }
@@ -47,7 +47,7 @@ public class Coordinate {
         return new Coordinate(this.row + rowShift, this.column + columnShift);
     }
 
-    public boolean isBlack() {
+    boolean isBlack() {
         assert this.isValid();
         return (this.row + this.column) % 2 != 0;
     }
@@ -56,7 +56,7 @@ public class Coordinate {
         return this.row;
     }
 
-    public int getColumn() {
+    int getColumn() {
         return this.column;
     }
 

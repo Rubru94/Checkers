@@ -7,21 +7,21 @@ class Square {
     Square() {
     }
 
-    public void put(Piece piece) {
+    void put(Piece piece) {
         this.piece = piece;
     }
 
-    public Piece remove() {
+    Piece remove() {
         Piece piece = this.piece;
         this.piece = null;
         return piece;
     }
 
-    public Piece getPiece() {
+    Piece getPiece() {
         return this.piece;
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return this.piece == null;
     }
 

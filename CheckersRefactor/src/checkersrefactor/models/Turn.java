@@ -8,11 +8,11 @@ class Turn {
         this.color = Color.WHITE;
     }
 
-    public void change() {
+    void change() {
         this.color = Color.values()[(this.color.ordinal() + 1) % 2];
     }
 
-    public Color getColor() {
+    Color getColor() {
         return this.color;
     }
 

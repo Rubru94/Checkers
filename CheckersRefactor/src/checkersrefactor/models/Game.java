@@ -70,19 +70,19 @@ public class Game {
         return this.board + "\n" + this.turn;
     }
 
-    public Color getColor() {
+    Color getColor() {
         return this.turn.getColor();
     }
     
-    public Board getBoard() {
+    Board getBoard() {
         return this.board;
     }
 
-    public Piece getPiece(Coordinate coordinate) {
+    Piece getPiece(Coordinate coordinate) {
         return this.board.getPiece(coordinate);
     }
 
-    public boolean hasNoPieces() {
+    boolean hasNoPieces() {
         return this.board.getPieces(this.turn.getColor()).isEmpty();
     }
     
