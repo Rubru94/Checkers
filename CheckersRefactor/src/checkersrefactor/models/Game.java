@@ -70,7 +70,7 @@ public class Game {
         return this.board + "\n" + this.turn;
     }
 
-    Color getColor() {
+    public Color getColor() {
         return this.turn.getColor();
     }
     
@@ -78,11 +78,11 @@ public class Game {
         return this.board;
     }
 
-    Piece getPiece(Coordinate coordinate) {
+    public Piece getPiece(Coordinate coordinate) {
         return this.board.getPiece(coordinate);
     }
 
-    boolean hasNoPieces() {
+    public boolean hasNoPieces() {
         return this.board.getPieces(this.turn.getColor()).isEmpty();
     }
     

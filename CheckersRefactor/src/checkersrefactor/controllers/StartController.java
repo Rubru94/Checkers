@@ -1,11 +1,12 @@
 package checkersrefactor.controllers;
 
-import checkersrefactor.models.Session;
+import checkersrefactor.models.Game;
+import checkersrefactor.models.State;
 
 public class StartController extends Controller {
 
-    public StartController(Session session) {
-        super(session);
+    public StartController(Game game, State state) {
+        super(game, state);
     }
 
     @Override
@@ -14,7 +15,8 @@ public class StartController extends Controller {
     }
 
     public void start() {
-        this.session.next();
+        this.game = new Game();
+        this.state.next();
     }
 
 }

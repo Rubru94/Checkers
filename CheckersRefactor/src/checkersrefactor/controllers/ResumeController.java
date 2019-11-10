@@ -1,11 +1,12 @@
 package checkersrefactor.controllers;
 
-import checkersrefactor.models.Session;
+import checkersrefactor.models.Game;
+import checkersrefactor.models.State;
 
 public class ResumeController extends Controller {
 
-    public ResumeController(Session session) {
-        super(session);
+    public ResumeController(Game game, State state) {
+        super(game, state);
     }
 
     @Override
@@ -14,11 +15,11 @@ public class ResumeController extends Controller {
     }
 
     public void next() {
-        this.session.next();
+        this.state.next();
     }
 
     public void reset() {
-        this.session.reset();
+        this.state.reset();
     }
 
 }

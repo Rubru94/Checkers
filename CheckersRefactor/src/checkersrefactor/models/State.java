@@ -4,20 +4,20 @@ public class State {
 
     private StateValue stateValue;
 
-    State() {
+    public State() {
         this.reset();
     }
 
-    void next() {
+    public void next() {
         assert this.stateValue != StateValue.EXIT;
         this.stateValue = StateValue.values()[this.stateValue.ordinal() + 1];
     }
 
-    void reset() {
+    public void reset() {
         this.stateValue = StateValue.INITIAL;
     }
 
-    StateValue getValueState() {
+    public StateValue getValueState() {
         return this.stateValue;
     }
 }

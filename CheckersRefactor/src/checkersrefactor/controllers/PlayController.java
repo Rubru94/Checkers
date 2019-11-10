@@ -3,37 +3,39 @@ package checkersrefactor.controllers;
 import checkersrefactor.models.Color;
 import checkersrefactor.models.Coordinate;
 import checkersrefactor.models.Error;
+import checkersrefactor.models.Game;
 import checkersrefactor.models.Piece;
-import checkersrefactor.models.Session;
+import checkersrefactor.models.State;
 
 public class PlayController extends Controller {
 
-    public PlayController(Session session) {
-        super(session);
+    public PlayController(Game game, State state) {
+        super(game, state);
     }
 
     public Error move(Coordinate origin, Coordinate target) {
-        Error error = this.session.move(origin, target);
-        if (this.session.hasNoPieces()) {
-            this.session.next();
+        Error error = this.game.move(origin, target);
+        if (this.game.hasNoPieces()) {
+            this.endGame();
         }
         return error;
     }
 
     public Piece getPiece(Coordinate coordinate) {
-        return session.getPiece(coordinate);
+        return this.game.getPiece(coordinate);
     }
 
     public Color getColor() {
-        return session.getColor();
+        return this.game.getColor();
     }
 
     public boolean hasNoPieces() {
-        return session.hasNoPieces();
+        return this.game.hasNoPieces();
     }
-    
+
     public void endGame() {
-        this.session.next();
+        this.game = new Game();
+        this.state.next();
     }
 
     @Override

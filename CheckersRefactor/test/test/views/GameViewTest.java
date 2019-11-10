@@ -1,7 +1,8 @@
 package test.views;
 
 import checkersrefactor.controllers.StartController;
-import checkersrefactor.models.Session;
+import checkersrefactor.models.Game;
+import checkersrefactor.models.State;
 import checkersrefactor.views.GameView;
 import checkersrefactor.utils.Console;
 import java.util.Arrays;
@@ -39,7 +40,7 @@ public class GameViewTest {
 
     @Test
     public void testInteract() {
-        StartController startController = new StartController(new Session());
+        StartController startController = new StartController(new Game(), new State());
         this.gameView.write(startController);
         verify(console, times(90)).write(argument.capture());
         List<String> rows = Arrays.asList(
