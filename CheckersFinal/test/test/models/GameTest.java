@@ -5,6 +5,7 @@ import checkersfinal.models.Color;
 import checkersfinal.models.Coordinate;
 import checkersfinal.models.Game;
 import checkersfinal.models.Error;
+import checkersfinal.models.GameBuilder;
 import checkersfinal.models.Piece;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -134,5 +135,22 @@ public class GameTest {
             {new Coordinate(2, 5), new Coordinate(3, 6)},
             {new Coordinate(5, 6), new Coordinate(4, 7)},
             {new Coordinate(1, 6), new Coordinate(4, 3)},}));
+    }
+
+    @Test
+    public void testGivenGameWhenWhitePiecesAreBlockedThenEndGame() {
+        Coordinate origin = new Coordinate(1, 2);
+        Game game = new GameBuilder()
+                .row(" n n    ")
+                .row("n b n   ")
+                .row("        ")
+                .row("  n     ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .build();
+        assertEquals(Color.WHITE, game.getTurn().getColor());
+        assertTrue(game.isBlocked());
     }
 }
