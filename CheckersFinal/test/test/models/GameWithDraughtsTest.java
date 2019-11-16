@@ -155,6 +155,30 @@ public class GameWithDraughtsTest {
         }
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
-        System.out.println(game.getBoard().toString());
+    }
+
+    @Test
+    public void testGivenGameWhenBlackDraughtMoveAnyDiagonalDirectionAndEatingThenNotError() {
+        Coordinate origin = new Coordinate(6, 7);
+        Coordinate target = new Coordinate(1, 2);
+        Game game = new GameBuilder()
+                .row("        ")
+                .row("        ")
+                .row("   b    ")
+                .row("  n b   ")
+                .row("   n b  ")
+                .row("        ")
+                .row("       N")
+                .row("        ")
+                .build();
+        game.getBoard().remove(origin);
+        game.getBoard().put(origin, new Draught(Color.BLACK));
+        game.getTurn().change();
+        game.move(origin, target);
+        for (int c = 0; c < origin.allBetweenDiagonal(target).size(); c++) {
+            assertEquals(null, game.getPiece((Coordinate) origin.allBetweenDiagonal(target).get(c)));
+        }
+        assertEquals(Draught.class, game.getPiece(target).getClass());
+        assertEquals(Color.BLACK, game.getPiece(target).getColor());
     }
 }
