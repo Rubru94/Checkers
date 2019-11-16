@@ -2,7 +2,7 @@ package checkersfinal.models;
 
 public class Draught extends Piece {
 
-    Draught(Color color) {
+    public Draught(Color color) {
         super(color);
     }
 

@@ -4,24 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameBuilder {
-    
+
     private List<String> strings;
-    
-    GameBuilder(){
+    private char[] piecesId = new char[]{'b', 'n', 'B', 'N'};
+    private Piece[] pieces = new Piece[]{
+        new Pawn(Color.WHITE),
+        new Pawn(Color.BLACK),
+        new Draught(Color.WHITE),
+        new Draught(Color.BLACK)
+    };
+
+    public GameBuilder() {
         this.strings = new ArrayList<String>();
     }
-    
-    public GameBuilder row(String string){
-        return null;
+
+    public GameBuilder row(String string) {
+        this.strings.add(string);
+        return this;
     }
-    
-    public Game build(){
+
+    public Game build() {
         Board board = new Board();
-        for(int i=0;i<this.strings.size();i++){
-            for(int j=0;j<this.strings.size();j++){
-                char character = this.strings.get(i).charAt(j);
-                if(character == 'b'){
-                   // board.put(new Coordinate(i,j),new Piece());
+        char character;
+        for (int i = 0; i < this.strings.size(); i++) {
+            for (int j = 0; j < this.strings.size(); j++) {
+                character = this.strings.get(i).charAt(j);
+                for (int id = 0; id < piecesId.length; id++) {
+                    if (id == character) {
+                        board.put(new Coordinate(i, j), pieces[id]);
+                    }
                 }
             }
         }

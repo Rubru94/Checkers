@@ -5,6 +5,7 @@ import checkersfinal.models.Color;
 import checkersfinal.models.Coordinate;
 import checkersfinal.models.Game;
 import checkersfinal.models.Error;
+import checkersfinal.models.GameBuilder;
 import checkersfinal.models.Piece;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -135,10 +136,4 @@ public class GameTest {
             {new Coordinate(5, 6), new Coordinate(4, 7)},
             {new Coordinate(1, 6), new Coordinate(4, 3)},}));
     }
-
-    @Test
-    public void withBuilder() {
-        //Game game = new GameBuilder().row()   
-    }
-
 }
