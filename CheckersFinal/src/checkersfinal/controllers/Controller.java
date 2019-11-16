@@ -1,8 +1,8 @@
 package checkersfinal.controllers;
 
-import checkersfinal.models.Color;
 import checkersfinal.models.Coordinate;
 import checkersfinal.models.Game;
+import checkersfinal.models.Piece;
 import checkersfinal.models.State;
 
 public abstract class Controller {
@@ -17,9 +17,9 @@ public abstract class Controller {
         this.state = state;
     }
 
-    public Color getColor(Coordinate coordinate) {
+    public Piece getPiece(Coordinate coordinate) {
         assert coordinate != null;
-        return this.game.getColor(coordinate);
+        return this.game.getPiece(coordinate);
     }
 
     abstract public void accept(ControllersVisitor controllersVisitor);

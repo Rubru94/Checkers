@@ -30,7 +30,7 @@ public class GameBuilder {
             for (int j = 0; j < this.strings.size(); j++) {
                 character = this.strings.get(i).charAt(j);
                 for (int id = 0; id < piecesId.length; id++) {
-                    if (id == character) {
+                    if (piecesId[id] == character) {
                         board.put(new Coordinate(i, j), pieces[id]);
                     }
                 }

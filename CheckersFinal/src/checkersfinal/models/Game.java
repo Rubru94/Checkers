@@ -31,9 +31,9 @@ public class Game {
     public Piece getInitialPiece(Coordinate coordinate) {
         if (coordinate.isBlack()) {
             if (coordinate.getRow() < EMPTY_SQUARES_START_ROW) {
-                return new Piece(Color.BLACK);
+                return new Pawn(Color.BLACK);
             } else if (coordinate.getRow() > EMPTY_SQUARES_FINISH_ROW) {
-                return new Piece(Color.WHITE);
+                return new Pawn(Color.WHITE);
             }
         }
         return null;
@@ -45,6 +45,10 @@ public class Game {
             this.board.remove(origin.betweenDiagonal(target));
         }
         this.board.move(origin, target);
+        if (this.board.getPiece(target).isLimit(target)) {
+            this.board.remove(target);
+            this.board.put(target, new Draught(Color.WHITE));
+        }
         this.turn.change();
 
     }
@@ -84,7 +88,7 @@ public class Game {
         return this.board + "\n" + this.turn;
     }
 
-    Board getBoard() {
+    public Board getBoard() {
         return this.board;
     }
 
