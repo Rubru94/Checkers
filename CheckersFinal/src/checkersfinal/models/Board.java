@@ -1,5 +1,6 @@
 package checkersfinal.models;
 
+import checkersfinal.views.GameView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,18 +92,13 @@ public class Board implements PieceProvider {
             if (piece == null) {
                 string += " ";
             } else {
-                final String[] letters = {"b", "n", "B", "N"};
-                if (piece.getColor() == Color.WHITE && (piece instanceof Pawn)) {
-                    string += letters[0];
-                } else if (piece.getColor() == Color.BLACK && (piece instanceof Pawn)) {
-                    string += letters[1];
-                } else if (piece.getColor() == Color.WHITE && (piece instanceof Draught)) {
-                    string += letters[2];
-                } else if (piece.getColor() == Color.BLACK && (piece instanceof Draught)) {
-                    string += letters[3];
+                for (int p = 0; p < Piece.TYPES.length; p++) {
+                    if (Piece.TYPES[p].getClass() == piece.getClass() && Piece.TYPES[p].getColor() == piece.getColor()) {
+                        string += Piece.IDS[p];
+                    }
                 }
             }
         }
-            return string + row + "\n";
+        return string + row + "\n";
     }
 }

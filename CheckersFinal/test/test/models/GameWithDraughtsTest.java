@@ -15,15 +15,15 @@ public class GameWithDraughtsTest {
         Coordinate origin = new Coordinate(1, 0);
         Coordinate target = new Coordinate(0, 1);
         Game game = new GameBuilder()
-                .row("        ")
-                .row("b       ")
-                .row("   n    ")
-                .row("        ")
-                .row("        ")
-                .row("        ")
-                .row("        ")
-                .row("        ")
-                .build();
+             .row("        ")
+             .row("b       ")
+             .row("   n    ")
+             .row("        ")
+             .row("        ")
+             .row("        ")
+             .row("        ")
+             .row("        ")
+             .build();
         game.move(origin, target);
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());

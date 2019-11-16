@@ -2,16 +2,11 @@ package checkersfinal.views;
 
 import checkersfinal.controllers.Controller;
 import checkersfinal.models.Board;
-import checkersfinal.models.Color;
 import checkersfinal.models.Coordinate;
-import checkersfinal.models.Draught;
-import checkersfinal.models.Pawn;
 import checkersfinal.models.Piece;
 
 public class GameView extends SubView {
 
-    private static final String[] PIECES = new String[]{"b", "n", "B", "N", " "};
-    
     public void write(Controller controller) {
         assert controller != null;
         this.console.writeln();
@@ -21,21 +16,14 @@ public class GameView extends SubView {
             for (int j = 0; j < Board.DIMENSION; j++) {
                 Piece piece = controller.getPiece(new Coordinate(i, j));
                 if (piece == null) {
-                    this.console.write(GameView.PIECES[4]);
+                    this.console.write(Piece.IDS[Piece.IDS.length - 1]);
+                } else {
+                    for (int p = 0; p < Piece.TYPES.length; p++) {
+                        if (Piece.TYPES[p].getClass() == piece.getClass() && Piece.TYPES[p].getColor() == piece.getColor()) {
+                            this.console.write(Piece.IDS[p]);
+                        }
+                    }
                 }
-                else if(piece.getColor() == Color.WHITE && (piece instanceof Pawn)){
-                    this.console.write(GameView.PIECES[0]);
-                }
-                else if(piece.getColor() == Color.BLACK && (piece instanceof Pawn)){
-                    this.console.write(GameView.PIECES[1]);
-                }
-                else if(piece.getColor() == Color.WHITE && (piece instanceof Draught)){
-                    this.console.write(GameView.PIECES[2]);
-                }
-                else if(piece.getColor() == Color.BLACK && (piece instanceof Draught)){
-                    this.console.write(GameView.PIECES[3]);
-                }
-                
             }
             this.console.writeln((i + 1) + "");
         }

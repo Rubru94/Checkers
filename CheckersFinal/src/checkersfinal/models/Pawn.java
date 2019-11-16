@@ -2,7 +2,7 @@ package checkersfinal.models;
 
 public class Pawn extends Piece {
 
-    Pawn(Color color) {
+    public Pawn(Color color) {
         super(color);
     }
     
