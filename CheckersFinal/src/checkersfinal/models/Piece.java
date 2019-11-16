@@ -3,7 +3,7 @@ package checkersfinal.models;
 public class Piece {
 
     private Color color;
-    private static final int MAX_DISTANCE = 2;
+    public static final int MAX_DISTANCE = 2;
     public static final String[] IDS = {"b", "n", "B", "N", " "};
     public static Piece[] TYPES = new Piece[]{
         new Pawn(Color.WHITE),
