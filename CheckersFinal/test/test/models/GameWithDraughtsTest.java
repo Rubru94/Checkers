@@ -68,7 +68,7 @@ public class GameWithDraughtsTest {
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
     }
-    
+
     @Test
     public void testGivenGameWhenBlackPawnReachLimitAndEatingThenNewDraugts() {
         Coordinate origin = new Coordinate(5, 4);
@@ -89,11 +89,11 @@ public class GameWithDraughtsTest {
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
     }
-    
-        @Test
+
+    @Test
     public void testGivenGameWhenWhiteDraughtMoveAnyDirectionThenNotError() {
         Coordinate origin = new Coordinate(0, 1);
-        Coordinate target = new Coordinate(1, 2);
+        Coordinate target = new Coordinate(2, 3);
         Game game = new GameBuilder()
                 .row(" B      ")
                 .row("        ")
@@ -104,6 +104,8 @@ public class GameWithDraughtsTest {
                 .row("        ")
                 .row("        ")
                 .build();
+        game.getBoard().remove(origin);
+        game.getBoard().put(origin, new Draught(Color.WHITE));
         game.move(origin, target);
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());

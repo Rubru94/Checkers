@@ -1,6 +1,5 @@
 package checkersfinal.models;
 
-import checkersfinal.views.GameView;
 import java.util.ArrayList;
 import java.util.List;
 
