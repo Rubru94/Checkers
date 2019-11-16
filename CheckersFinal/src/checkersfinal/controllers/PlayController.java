@@ -13,14 +13,18 @@ public class PlayController extends Controller {
         super(game, state);
     }
 
-    public Error move(Coordinate origin, Coordinate target) {
+    public void move(Coordinate origin, Coordinate target) {
+        assert this.isCorrect(origin, target) == null;
+        this.game.move(origin, target);
+        if (this.game.hasNoPieces()) {
+            this.state.next();
+        }
+    }
+
+    public Error isCorrect(Coordinate origin, Coordinate target) {
         assert origin != null;
         assert target != null;
-        Error error = this.game.move(origin, target);
-        if (this.game.hasNoPieces()) {
-            this.endGame();
-        }
-        return error;
+        return this.game.isCorrect(origin, target);
     }
 
     public Piece getPiece(Coordinate coordinate) {
@@ -42,6 +46,7 @@ public class PlayController extends Controller {
 
     @Override
     public void accept(ControllersVisitor controllersVisitor) {
+        assert controllersVisitor != null;
         controllersVisitor.visit(this);
     }
 

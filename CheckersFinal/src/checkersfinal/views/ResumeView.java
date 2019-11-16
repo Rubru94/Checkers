@@ -13,6 +13,7 @@ public class ResumeView extends SubView {
     }
 
     public void interact(ResumeController resumeController) {
+        assert resumeController != null;
         if (this.yesNoDialog.read(MessageView.PLAY_AGAIN.getMessage())) {
             resumeController.reset();
         } else {

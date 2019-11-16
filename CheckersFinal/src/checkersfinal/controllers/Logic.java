@@ -10,9 +10,6 @@ public class Logic {
 
     private Game game;
     private State state;
-    private StartController startController;
-    private PlayController playController;
-    private ResumeController resumeController;
     private Map<StateValue, Controller> controllers;
 
     public Logic() {

@@ -41,7 +41,10 @@ public class GameTest {
         for (int i = 0; i < coordinates.length; i++) {
             assertNull(error);
             System.out.println(game);
-            error = game.move(coordinates[i][0], coordinates[i][1]);
+            error = game.isCorrect(coordinates[i][0], coordinates[i][1]);
+            if (error == null) {
+                game.move(coordinates[i][0], coordinates[i][1]);
+            }
         }
         return error;
     }
@@ -52,14 +55,8 @@ public class GameTest {
         assertEquals(Color.BLACK, game.getColor(new Coordinate(2, 1)));
     }
 
-    @Test()
-    public void testGivenGameWhenMoveWithOuterCoordinateThenOutCoordinateError() {
-        assertEquals(Error.OUT_COORDINATE, this.advance(new Coordinate[][]{
-            {new Coordinate(4, 7), new Coordinate(3, 8)},}));
-    }
-
     @Test
-    public void testGivenGameWhenMoveEmptySquaerThenEmptySquareError() {
+    public void testGivenGameWhenMoveEmptySquareThenEmptySquareError() {
         assertEquals(Error.EMPTY_ORIGIN, this.advance(new Coordinate[][]{
             {new Coordinate(4, 3), new Coordinate(3, 4),},}));
     }
@@ -133,7 +130,15 @@ public class GameTest {
     @Test
     public void testGivenGameWhenMoveBadDistanceThenError() {
         assertEquals(Error.BAD_DISTANCE, this.advance(new Coordinate[][]{
-            {new Coordinate(5, 0), new Coordinate(2, 3)},}));
+            {new Coordinate(5, 0), new Coordinate(4, 1)},
+            {new Coordinate(2, 5), new Coordinate(3, 6)},
+            {new Coordinate(5, 6), new Coordinate(4, 7)},
+            {new Coordinate(1, 6), new Coordinate(4, 3)},}));
+    }
+
+    @Test
+    public void withBuilder() {
+        //Game game = new GameBuilder().row()   
     }
 
 }

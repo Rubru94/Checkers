@@ -8,13 +8,14 @@ class Square {
     }
 
     void put(Piece piece) {
+        assert piece != null;
         this.piece = piece;
     }
 
     Piece remove() {
-        Piece piece = this.piece;
+        Piece removedPiece = this.getPiece();
         this.piece = null;
-        return piece;
+        return removedPiece;
     }
 
     Piece getPiece() {
@@ -22,14 +23,14 @@ class Square {
     }
 
     boolean isEmpty() {
-        return this.piece == null;
+        return this.getPiece() == null;
     }
 
-    public Color getColor() {
-        if (piece == null) {
+    Color getColor() {
+        if (this.getPiece() == null) {
             return null;
         }
-        return this.piece.getColor();
+        return this.getPiece().getColor();
     }
 
 }

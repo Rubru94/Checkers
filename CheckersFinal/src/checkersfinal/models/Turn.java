@@ -1,6 +1,6 @@
 package checkersfinal.models;
 
-class Turn {
+public class Turn {
 
     private Color color;
 
@@ -12,7 +12,7 @@ class Turn {
         this.color = Color.values()[(this.color.ordinal() + 1) % 2];
     }
 
-    Color getColor() {
+    public Color getColor() {
         return this.color;
     }
 

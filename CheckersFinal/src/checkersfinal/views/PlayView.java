@@ -7,34 +7,45 @@ import checkersfinal.models.Error;
 public class PlayView extends SubView {
 
     private static final String[] COLORS = {"blancas", "negras"};
+    private static final String FORMAT = "xx.xx";
 
     public PlayView() {
         super();
     }
 
     public void interact(PlayController playController) {
+        assert playController != null;
         String color = "";
         Error error = null;
-        String[] input = null;
+        Coordinate origin = null;
+        Coordinate target = null;
+        String format = "";
         GameView gameView = new GameView();
 
         do {
             try {
-
-                color = PlayView.COLORS[playController.getColor().ordinal()];
-                String command = this.console.readString("Mueven las " + color + ": ");
-                input = command.split("\\.|\\n");
-                error = playController.move(
-                        new Coordinate(input[0]),
-                        new Coordinate(input[1]));
-                if (error != null) {
-                    console.writeln("Error!!!" + error.name());
-                }
                 gameView.write(playController);
+                error = null;
+                color = PlayView.COLORS[playController.getColor().ordinal()];
+                format = this.console.readString("Mueven las " + color + ": ");
+
+                if (format.length() != PlayView.FORMAT.length()) {
+                    this.console.writeln("Error!!! Formato incorrecto");
+                    error = Error.BAD_FORMAT;
+                } else {
+                    origin = Coordinate.getInstance(format.substring(0, 2));
+                    target = Coordinate.getInstance(format.substring(3, 5));
+                    if (origin == null || target == null) {
+                        error = Error.BAD_FORMAT;
+                    }
+                }/*
+                if (error != null) {
+                    
+                }*/
 
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
 
-                if (input[0].equals("-1")) {
+                if (format.equals("-1")) {
                     this.console.writeln(MessageView.GIVE_UP_DEFEAT.getMessage());
                     error = null;
                     playController.endGame();
@@ -43,9 +54,14 @@ public class PlayView extends SubView {
                 }
             }
         } while (error != null);
-        
-        if (playController.hasNoPieces()) {
-            this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());
+        error = playController.isCorrect(origin, target);
+        if (error == null) {
+            playController.move(origin, target);
+            if (playController.hasNoPieces()) {
+                this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());
+            }
+        } else {
+            console.writeln("Error!!!" + error.name());
         }
     }
 

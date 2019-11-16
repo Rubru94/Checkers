@@ -23,6 +23,13 @@ public class Game {
         }
     }
 
+    public Game(Board board) {
+        this.turn = new Turn();
+        this.board = board;
+    }
+    
+    
+
     public Piece getInitialPiece(Coordinate coordinate) {
         if (coordinate.isBlack()) {
             if (coordinate.getRow() < EMPTY_SQUARES_START_ROW) {
@@ -34,21 +41,48 @@ public class Game {
         return null;
     }
 
-    public Error move(Coordinate origin, Coordinate target) {
-
-        PawnMoveValidator pawnMoveValidator = new PawnMoveValidator(origin, target, this.board, this.turn);
-        Error error = pawnMoveValidator.validateErrors();
-        if (error != null) {
-            return error;
+    public void move(Coordinate origin, Coordinate target) {
+        assert this.isCorrect(origin, target) == null;
+        if (origin.diagonalDistance(target) == 2) {
+            this.board.remove(origin.betweenDiagonal(target));
         }
-
         this.board.move(origin, target);
+        if (this.board.getPiece(target).isLimit(target)) {
+            this.board.remove(target);
+            this.board.put(target, new Draught(Color.WHITE));
+        }
         this.turn.change();
-        return null;
+
+    }
+
+    public Error isCorrect(Coordinate origin, Coordinate target) {
+        assert origin != null;
+        assert target != null;
+        if (board.isEmpty(origin)) {
+            return Error.EMPTY_ORIGIN;
+        }
+        if (this.turn.getColor() != this.board.getColor(origin)) {
+            return Error.OPPOSITE_PIECE;
+        }
+        return this.board.getPiece(origin).isCorrect(origin, target, this.board);
     }
 
     public Color getColor(Coordinate coordinate) {
+        assert coordinate != null;
         return this.board.getColor(coordinate);
+    }
+
+    public Color getColor() {
+        return this.turn.getColor();
+    }
+
+    public boolean hasNoPieces() {
+        return this.board.getPieces(this.turn.getColor()).isEmpty();
+    }
+
+    public Piece getPiece(Coordinate coordinate) {
+        assert coordinate != null;
+        return this.board.getPiece(coordinate);
     }
 
     @Override
@@ -56,24 +90,12 @@ public class Game {
         return this.board + "\n" + this.turn;
     }
 
-    public Color getColor() {
-        return this.turn.getColor();
-    }
-
-    Board getBoard() {
+    public Board getBoard() {
         return this.board;
     }
 
     Turn getTurn() {
         return this.turn;
-    }
-
-    public Piece getPiece(Coordinate coordinate) {
-        return this.board.getPiece(coordinate);
-    }
-
-    public boolean hasNoPieces() {
-        return this.board.getPieces(this.turn.getColor()).isEmpty();
     }
 
 }

@@ -9,14 +9,14 @@ public class StartController extends Controller {
         super(game, state);
     }
 
-    @Override
-    public void accept(ControllersVisitor controllersVisitor) {
-        controllersVisitor.visit(this);
-    }
-
     public void start() {
         this.game = new Game();
         this.state.next();
     }
 
+    @Override
+    public void accept(ControllersVisitor controllersVisitor) {
+        assert controllersVisitor != null;
+        controllersVisitor.visit(this);
+    }
 }

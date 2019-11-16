@@ -3,9 +3,11 @@ package checkersfinal.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+public class Board implements PieceProvider {
 
     public static final int DIMENSION = 8;
+    public static final int INITIAL_LIMIT = 0;
+    public static final int FINAL_LIMIT = 7;
 
     private Square[][] squares;
 
@@ -19,16 +21,16 @@ public class Board {
     }
 
     private Square getSquare(Coordinate coordinate) {
-        assert coordinate != null && coordinate.isValid();
+        assert coordinate != null;
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }
 
-    void put(Coordinate coordinate, Piece piece) {
+    public void put(Coordinate coordinate, Piece piece) {
         assert piece != null;
         this.getSquare(coordinate).put(piece);
     }
 
-    Piece remove(Coordinate coordinate) {
+    public Piece remove(Coordinate coordinate) {
         assert this.getPiece(coordinate) != null;
         return this.getSquare(coordinate).remove();
     }
@@ -37,11 +39,13 @@ public class Board {
         this.put(target, this.remove(origin));
     }
 
-    Piece getPiece(Coordinate coordinate) {
+    @Override
+    public Piece getPiece(Coordinate coordinate) {
         return this.getSquare(coordinate).getPiece();
     }
 
-    boolean isEmpty(Coordinate coordinate) {
+    @Override
+    public boolean isEmpty(Coordinate coordinate) {
         return this.getSquare(coordinate).isEmpty();
     }
 

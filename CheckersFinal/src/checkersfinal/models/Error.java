@@ -1,12 +1,12 @@
 package checkersfinal.models;
 
 public enum Error {
-    OUT_COORDINATE,
-    EMPTY_ORIGIN,
-    OPPOSITE_PIECE,
-    NOT_DIAGONAL,
+    BAD_FORMAT,
+    EMPTY_ORIGIN, 
+    OPPOSITE_PIECE, 
+    NOT_DIAGONAL, 
     BAD_DISTANCE,
-    NOT_EMPTY_TARGET,
-    NOT_ADVANCED,
+    NOT_EMPTY_TARGET, 
+    NOT_ADVANCED, 
     EATING_EMPTY;
 }

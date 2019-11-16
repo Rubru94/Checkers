@@ -7,35 +7,43 @@ public class Coordinate {
     private static final int LOWER_LIMIT = 0;
     private static final int UPPER_LIMIT = 7;
 
-    public Coordinate(String format){
-        int number = Integer.parseInt(format);
-        this.row = number/10-1;
-        this.column = number%10-1;
-    }
-    
     public Coordinate(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
-    boolean isValid() {
-        return Coordinate.LOWER_LIMIT <= row && row <= Coordinate.UPPER_LIMIT && Coordinate.LOWER_LIMIT <= column
-                && column <= Coordinate.UPPER_LIMIT;
+    public static Coordinate getInstance(String format) {
+        assert format != null;
+        try {
+            int value = Integer.parseInt(format);
+            int row = value / 10 - 1;
+            int column = value % 10 - 1;
+            if (row < Coordinate.LOWER_LIMIT || Coordinate.UPPER_LIMIT < row
+                    || column < Coordinate.LOWER_LIMIT || Coordinate.UPPER_LIMIT < column) {
+                return null;
+            }
+            return new Coordinate(row, column);
+
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
-    public boolean isDiagonal(Coordinate coordinate) {
-        assert coordinate != null && coordinate.isValid() && this.isValid();
+    boolean isDiagonal(Coordinate coordinate) {
+        assert coordinate != null;
         return this.row + this.column == coordinate.row + coordinate.column
                 || this.row - this.column == coordinate.row - coordinate.column;
     }
 
     public int diagonalDistance(Coordinate coordinate) {
-        assert coordinate != null && coordinate.isValid() && this.isValid() && this.isDiagonal(coordinate);
+        assert coordinate != null;
+        assert this.isDiagonal(coordinate);
         return Math.abs(this.row - coordinate.row);
     }
 
     public Coordinate betweenDiagonal(Coordinate coordinate) {
-        assert coordinate != null && coordinate.isValid() && this.isValid() && this.diagonalDistance(coordinate) == 2;
+        assert coordinate != null;
+        assert this.diagonalDistance(coordinate) == 2;
         int rowShift = 1;
         if (coordinate.row - this.row < 0) {
             rowShift = -1;
@@ -48,7 +56,6 @@ public class Coordinate {
     }
 
     boolean isBlack() {
-        assert this.isValid();
         return (this.row + this.column) % 2 != 0;
     }
 
@@ -56,7 +63,7 @@ public class Coordinate {
         return this.row;
     }
 
-    int getColumn() {
+    public int getColumn() {
         return this.column;
     }
 

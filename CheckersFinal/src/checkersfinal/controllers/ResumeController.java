@@ -9,11 +9,6 @@ public class ResumeController extends Controller {
         super(game, state);
     }
 
-    @Override
-    public void accept(ControllersVisitor controllersVisitor) {
-        controllersVisitor.visit(this);
-    }
-
     public void next() {
         this.state.next();
     }
@@ -22,4 +17,9 @@ public class ResumeController extends Controller {
         this.state.reset();
     }
 
+    @Override
+    public void accept(ControllersVisitor controllersVisitor) {
+        assert controllersVisitor != null;
+        controllersVisitor.visit(this);
+    }
 }
