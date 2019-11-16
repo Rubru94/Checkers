@@ -110,4 +110,26 @@ public class GameWithDraughtsTest {
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
     }
+
+    @Test
+    public void testGivenGameWhenBlackDraughtMoveAnyDirectionThenNotError() {
+        Coordinate origin = new Coordinate(5, 4);
+        Coordinate target = new Coordinate(1, 0);
+        Game game = new GameBuilder()
+                .row(" B      ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("    N   ")
+                .row("        ")
+                .row("        ")
+                .build();
+        game.getBoard().remove(origin);
+        game.getBoard().put(origin, new Draught(Color.BLACK));
+        game.getTurn().change();
+        game.move(origin, target);
+        assertEquals(Draught.class, game.getPiece(target).getClass());
+        assertEquals(Color.BLACK, game.getPiece(target).getColor());
+    }
 }

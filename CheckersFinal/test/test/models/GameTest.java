@@ -5,7 +5,6 @@ import checkersfinal.models.Color;
 import checkersfinal.models.Coordinate;
 import checkersfinal.models.Game;
 import checkersfinal.models.Error;
-import checkersfinal.models.GameBuilder;
 import checkersfinal.models.Piece;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
