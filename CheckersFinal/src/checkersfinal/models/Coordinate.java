@@ -1,5 +1,8 @@
 package checkersfinal.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coordinate {
 
     private int row;
@@ -53,6 +56,27 @@ public class Coordinate {
             columnShift = -1;
         }
         return new Coordinate(this.row + rowShift, this.column + columnShift);
+    }
+
+    public List allBetweenDiagonal(Coordinate coordinate) {
+        assert coordinate != null;
+        List<Coordinate> coordinates = new ArrayList<>();
+        int rowShift;
+        int columnShift;
+        int distance = this.diagonalDistance(coordinate);
+        for(int i=1;i<distance;i++){
+            rowShift = i;
+            if (coordinate.row - this.row < 0) {
+                rowShift = -i;
+            }
+            columnShift = i;
+            if (coordinate.column - this.column < 0) {
+                columnShift = -i;
+            }
+            coordinates.add(new Coordinate(this.row + rowShift, this.column + columnShift));
+        }
+        
+        return coordinates;
     }
 
     boolean isBlack() {

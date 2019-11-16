@@ -44,6 +44,14 @@ public class Game {
         if ((this.board.getPiece(origin) instanceof Pawn) && origin.diagonalDistance(target) == Piece.MAX_DISTANCE) {
             this.board.remove(origin.betweenDiagonal(target));
         }
+        if (this.board.getPiece(origin) instanceof Draught) {
+            for (int c = 0; c < origin.allBetweenDiagonal(target).size(); c++) {
+                Coordinate coordinate = (Coordinate) origin.allBetweenDiagonal(target).get(c);
+                if (this.board.getPiece(coordinate) != null) {
+                    this.board.remove(coordinate);
+                }
+            }
+        }
         this.board.move(origin, target);
         if (this.board.getPiece(target).isLimit(target)) {
             this.board.remove(target);
