@@ -5,6 +5,7 @@ import checkersfinal.models.Color;
 import checkersfinal.models.Coordinate;
 import checkersfinal.models.Game;
 import checkersfinal.models.State;
+import checkersfinal.models.StateValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Test;
@@ -20,5 +21,13 @@ public class PlayControllerTest {
         playController.move(origin, target);
         assertNull(playController.getPiece(origin));
         assertEquals(playController.getPiece(target).getColor(), Color.WHITE);
+    }
+
+    @Test
+    public void givenPlayControllerInGameWhenEndGameThenNextStateFinal() {
+        PlayController playController = new PlayController(new Game(), new State());
+        playController.setStateValue(StateValue.IN_GAME);
+        playController.endGame();
+        assertEquals(playController.getStateValue(), StateValue.FINAL);
     }
 }

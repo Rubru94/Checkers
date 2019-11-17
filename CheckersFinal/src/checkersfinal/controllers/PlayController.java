@@ -6,6 +6,7 @@ import checkersfinal.models.Error;
 import checkersfinal.models.Game;
 import checkersfinal.models.Piece;
 import checkersfinal.models.State;
+import checkersfinal.models.StateValue;
 
 public class PlayController extends Controller {
 
@@ -42,6 +43,14 @@ public class PlayController extends Controller {
     public void endGame() {
         this.game = new Game();
         this.state.next();
+    }
+    
+    public StateValue getStateValue(){
+        return this.state.getValueState();
+    }
+    
+    public void setStateValue(StateValue stateValue){
+        this.state.setValueState(stateValue);
     }
 
     @Override
