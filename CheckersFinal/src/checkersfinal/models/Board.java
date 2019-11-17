@@ -65,6 +65,42 @@ public class Board implements PieceProvider {
         return pieces;
     }
 
+    boolean hasPossibleMoves(Color color) {
+
+        boolean hasMoves = false;
+        List<Piece> pieces = getPieces(color);
+        for (int i = 0; i < pieces.size(); i++) {
+
+            if (pieces.get(i) instanceof Pawn && !hasMoves) {
+                for (int a = 0; a < Board.DIMENSION; a++) {
+                    for (int b = 0; b < Board.DIMENSION; b++) {
+                        if (this.squares[a][b].getColor() == color) {
+                            if (this.squares[a][b].getPiece() == pieces.get(i)) {
+
+                                Coordinate origin = new Coordinate(a, b);
+                                Coordinate target = new Coordinate(a - 1, b + 1);
+                                if (pieces.get(i).isCorrect(origin, target, this) != null) {
+                                    target = new Coordinate(a - 1, b - 1);
+                                    hasMoves = pieces.get(i).isCorrect(origin, target, this) == null;
+                                } else {
+                                    hasMoves = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (pieces.get(i) instanceof Draught) {
+
+            }
+            if(hasMoves){
+                return hasMoves;
+            }
+        }
+
+        return hasMoves;
+    }
+
     @Override
     public String toString() {
         String string = "";

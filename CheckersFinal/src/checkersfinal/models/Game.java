@@ -85,6 +85,10 @@ public class Game {
     public boolean hasNoPieces() {
         return this.board.getPieces(this.turn.getColor()).isEmpty();
     }
+    
+    public boolean isBlocked(){
+        return !this.board.hasPossibleMoves(this.turn.getColor());
+    }
 
     public Piece getPiece(Coordinate coordinate) {
         assert coordinate != null;
