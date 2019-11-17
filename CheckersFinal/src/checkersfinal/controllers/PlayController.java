@@ -28,6 +28,7 @@ public class PlayController extends Controller {
         return this.game.isCorrect(origin, target);
     }
 
+    @Override
     public Piece getPiece(Coordinate coordinate) {
         return this.game.getPiece(coordinate);
     }

@@ -7,8 +7,7 @@ public enum MessageView {
     TITLE("DAMAS"),
     PLAY_AGAIN("¿Queréis jugar otra"),
     NOT_MOVE_DEFEAT("Derrota!!! No puedes mover tus fichas!!!"),
-    GIVE_UP_DEFEAT("Derrota!!! Te has rendido!!!"),
-    INVALID_FORMAT("Entrada no valida, prueba de nuevo");
+    GIVE_UP_DEFEAT("Derrota!!! Te has rendido!!!");
 
     private String message;
     private static Console console = new Console();

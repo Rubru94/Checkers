@@ -29,6 +29,9 @@ public class PlayView extends SubView {
                 color = PlayView.COLORS[playController.getColor().ordinal()];
                 format = this.console.readString("Mueven las " + color + ": ");
 
+                if (format.equals("-1")) {
+                    throw new NumberFormatException("Exit Game");
+                }
                 if (format.length() != PlayView.FORMAT.length()) {
                     this.console.writeln("Error!!! Formato incorrecto");
                     error = Error.BAD_FORMAT;
@@ -38,10 +41,7 @@ public class PlayView extends SubView {
                     if (origin == null || target == null) {
                         error = Error.BAD_FORMAT;
                     }
-                }/*
-                if (error != null) {
-                    
-                }*/
+                }
 
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
 
@@ -49,19 +49,19 @@ public class PlayView extends SubView {
                     this.console.writeln(MessageView.GIVE_UP_DEFEAT.getMessage());
                     error = null;
                     playController.endGame();
-                } else {
-                    this.console.writeln(MessageView.INVALID_FORMAT.getMessage());
                 }
             }
         } while (error != null);
-        error = playController.isCorrect(origin, target);
-        if (error == null) {
-            playController.move(origin, target);
-            if (playController.hasNoPieces()) {
-                this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());
+        if (!format.equals("-1")) {
+            error = playController.isCorrect(origin, target);
+            if (error == null) {
+                playController.move(origin, target);
+                if (playController.hasNoPieces()) {
+                    this.console.write(MessageView.NOT_MOVE_DEFEAT.getMessage());
+                }
+            } else {
+                console.writeln("Error!!!" + error.name());
             }
-        } else {
-            console.writeln("Error!!!" + error.name());
         }
     }
 
