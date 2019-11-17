@@ -66,39 +66,39 @@ public class Board implements PieceProvider {
     }
 
     boolean hasPossibleMoves(Color color) {
-
         boolean hasMoves = false;
         List<Piece> pieces = getPieces(color);
         for (int i = 0; i < pieces.size(); i++) {
-
-            if (pieces.get(i) instanceof Pawn && !hasMoves) {
+            if (!hasMoves) {
                 for (int a = 0; a < Board.DIMENSION; a++) {
                     for (int b = 0; b < Board.DIMENSION; b++) {
                         if (this.squares[a][b].getColor() == color) {
                             if (this.squares[a][b].getPiece() == pieces.get(i)) {
-
-                                Coordinate origin = new Coordinate(a, b);
-                                Coordinate target = new Coordinate(a - 1, b + 1);
-                                if (pieces.get(i).isCorrect(origin, target, this) != null) {
-                                    target = new Coordinate(a - 1, b - 1);
-                                    hasMoves = pieces.get(i).isCorrect(origin, target, this) == null;
-                                } else {
-                                    hasMoves = true;
-                                }
+                                hasMoves = canMove(new Coordinate(a, b));
                             }
                         }
                     }
                 }
-            }
-            if (pieces.get(i) instanceof Draught) {
-
-            }
-            if(hasMoves){
+            } else {
                 return hasMoves;
             }
         }
-
         return hasMoves;
+    }
+
+    boolean canMove(Coordinate origin) {
+        boolean correct = false;
+        Coordinate target;
+        for (int i = 0; i < Board.DIMENSION; i++) {
+            for (int j = 0; j < Board.DIMENSION; j++) {
+                target = new Coordinate(i, j);
+                correct = this.getPiece(origin).isCorrect(origin, target, this) == null;
+                if (correct) {
+                    return correct;
+                }
+            }
+        }
+        return correct;
     }
 
     @Override
@@ -137,3 +137,23 @@ public class Board implements PieceProvider {
         return string + row + "\n";
     }
 }
+
+
+/*
+
+                                Coordinate target = new Coordinate(a - 1, b + 1);
+                                if (pieces.get(i).isCorrect(origin, target, this) != null) {
+                                    target = new Coordinate(a - 1, b - 1);
+                                    hasMoves = pieces.get(i).isCorrect(origin, target, this) == null;
+                                    target = new Coordinate(a - 2, b + 2);
+                                    if (pieces.get(i).isCorrect(origin, target, this) != null) {
+                                        target = new Coordinate(a - 2, b - 2);
+                                        hasMoves = pieces.get(i).isCorrect(origin, target, this) == null;
+                                    } else {
+                                        hasMoves = true;
+                                    }
+                                } else {
+                                    hasMoves = true;
+                                }
+
+ */
