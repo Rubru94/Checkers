@@ -182,8 +182,8 @@ public class GameWithDraughtsTest {
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
     }
-    
-        @Test
+
+    @Test
     public void testGivenGameWhenWhiteDraughtPiecesAreBlockedThenIsBlockedTrue() {
         Coordinate origin = new Coordinate(2, 3);
         Game game = new GameBuilder()
@@ -199,6 +199,26 @@ public class GameWithDraughtsTest {
         game.getBoard().remove(origin);
         game.getBoard().put(origin, new Draught(Color.WHITE));
         assertEquals(Color.WHITE, game.getTurn().getColor());
+        assertTrue(game.isBlocked());
+    }
+
+    @Test
+    public void testGivenGameWhenBlackDraughtPiecesAreBlockedThenIsBlockedTrue() {
+        Coordinate origin = new Coordinate(2, 3);
+        Game game = new GameBuilder()
+                .row(" n   n  ")
+                .row("b b b b ")
+                .row(" b N   b")
+                .row("b b b   ")
+                .row(" b   b  ")
+                .row("b     b ")
+                .row("       b")
+                .row("        ")
+                .build();
+        game.getBoard().remove(origin);
+        game.getBoard().put(origin, new Draught(Color.BLACK));
+        game.getTurn().change();
+        assertEquals(Color.BLACK, game.getTurn().getColor());
         assertTrue(game.isBlocked());
     }
 }
