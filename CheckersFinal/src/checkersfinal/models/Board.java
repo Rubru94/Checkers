@@ -137,23 +137,3 @@ public class Board implements PieceProvider {
         return string + row + "\n";
     }
 }
-
-
-/*
-
-                                Coordinate target = new Coordinate(a - 1, b + 1);
-                                if (pieces.get(i).isCorrect(origin, target, this) != null) {
-                                    target = new Coordinate(a - 1, b - 1);
-                                    hasMoves = pieces.get(i).isCorrect(origin, target, this) == null;
-                                    target = new Coordinate(a - 2, b + 2);
-                                    if (pieces.get(i).isCorrect(origin, target, this) != null) {
-                                        target = new Coordinate(a - 2, b - 2);
-                                        hasMoves = pieces.get(i).isCorrect(origin, target, this) == null;
-                                    } else {
-                                        hasMoves = true;
-                                    }
-                                } else {
-                                    hasMoves = true;
-                                }
-
- */
