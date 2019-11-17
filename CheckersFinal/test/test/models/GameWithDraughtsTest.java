@@ -6,6 +6,7 @@ import checkersfinal.models.Draught;
 import checkersfinal.models.Game;
 import checkersfinal.models.GameBuilder;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class GameWithDraughtsTest {
@@ -180,5 +181,24 @@ public class GameWithDraughtsTest {
         }
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
+    }
+    
+        @Test
+    public void testGivenGameWhenWhiteDraughtPiecesAreBlockedThenIsBlockedTrue() {
+        Coordinate origin = new Coordinate(2, 3);
+        Game game = new GameBuilder()
+                .row(" n n n  ")
+                .row("n n n   ")
+                .row("   B    ")
+                .row("  n n   ")
+                .row(" n   n  ")
+                .row("n     n ")
+                .row("       n")
+                .row("        ")
+                .build();
+        game.getBoard().remove(origin);
+        game.getBoard().put(origin, new Draught(Color.WHITE));
+        assertEquals(Color.WHITE, game.getTurn().getColor());
+        assertTrue(game.isBlocked());
     }
 }
